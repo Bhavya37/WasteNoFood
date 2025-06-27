@@ -59,7 +59,7 @@ export default function AppSidebar() {
       <SidebarMenu className="flex-1">
         {menuItems.map((item) => (
           <SidebarMenuItem key={item.href}>
-            <Link href={item.href} legacyBehavior passHref>
+            <Link href={item.href}>
               <SidebarMenuButton
                 isActive={pathname === item.href}
                 icon={<item.icon />}
@@ -73,14 +73,14 @@ export default function AppSidebar() {
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
-            <Link href="#" legacyBehavior passHref>
+            <Link href="#">
               <SidebarMenuButton icon={<HelpCircle />}>
                 Help & Support
               </SidebarMenuButton>
             </Link>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <Link href="#" legacyBehavior passHref>
+            <Link href="#">
               <SidebarMenuButton icon={<Settings />}>
                 Settings
               </SidebarMenuButton>
