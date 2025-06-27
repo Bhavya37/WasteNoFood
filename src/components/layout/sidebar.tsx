@@ -59,32 +59,35 @@ export default function AppSidebar() {
       <SidebarMenu className="flex-1">
         {menuItems.map((item) => (
           <SidebarMenuItem key={item.href}>
-            <Link href={item.href}>
-              <SidebarMenuButton
-                isActive={pathname === item.href}
-                icon={<item.icon />}
-              >
-                {item.label}
-              </SidebarMenuButton>
-            </Link>
+            <SidebarMenuButton
+              asChild
+              isActive={pathname === item.href}
+            >
+              <Link href={item.href}>
+                <item.icon />
+                <span>{item.label}</span>
+              </Link>
+            </SidebarMenuButton>
           </SidebarMenuItem>
         ))}
       </SidebarMenu>
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
-            <Link href="#">
-              <SidebarMenuButton icon={<HelpCircle />}>
-                Help & Support
-              </SidebarMenuButton>
-            </Link>
+            <SidebarMenuButton asChild>
+              <Link href="#">
+                <HelpCircle />
+                <span>Help & Support</span>
+              </Link>
+            </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <Link href="#">
-              <SidebarMenuButton icon={<Settings />}>
-                Settings
-              </SidebarMenuButton>
-            </Link>
+            <SidebarMenuButton asChild>
+              <Link href="#">
+                <Settings />
+                <span>Settings</span>
+              </Link>
+            </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
