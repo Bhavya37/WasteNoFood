@@ -5,8 +5,8 @@ import {
   SidebarHeader,
   SidebarMenu,
   SidebarMenuItem,
-  SidebarMenuButton,
   SidebarFooter,
+  sidebarMenuButtonVariants,
 } from '@/components/ui/sidebar';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
@@ -19,6 +19,7 @@ import {
   HelpCircle,
 } from 'lucide-react';
 import { Logo } from '@/components/icons/logo';
+import { cn } from '@/lib/utils';
 
 const menuItems = [
   {
@@ -59,35 +60,30 @@ export default function AppSidebar() {
       <SidebarMenu className="flex-1">
         {menuItems.map((item) => (
           <SidebarMenuItem key={item.href}>
-            <SidebarMenuButton
-              asChild
-              isActive={pathname === item.href}
+            <Link
+              href={item.href}
+              className={cn(sidebarMenuButtonVariants())}
+              data-active={pathname === item.href}
             >
-              <Link href={item.href}>
-                <item.icon />
-                <span>{item.label}</span>
-              </Link>
-            </SidebarMenuButton>
+              <item.icon />
+              <span>{item.label}</span>
+            </Link>
           </SidebarMenuItem>
         ))}
       </SidebarMenu>
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton asChild>
-              <Link href="#">
-                <HelpCircle />
-                <span>Help & Support</span>
-              </Link>
-            </SidebarMenuButton>
+            <Link href="#" className={cn(sidebarMenuButtonVariants())}>
+              <HelpCircle />
+              <span>Help & Support</span>
+            </Link>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <SidebarMenuButton asChild>
-              <Link href="#">
-                <Settings />
-                <span>Settings</span>
-              </Link>
-            </SidebarMenuButton>
+            <Link href="#" className={cn(sidebarMenuButtonVariants())}>
+              <Settings />
+              <span>Settings</span>
+            </Link>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
