@@ -15,6 +15,7 @@ import { Button } from '@/components/ui/button';
 import { Clock, MapPin, UtensilsCrossed, CheckCircle, Hand, AlertCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
+import { ToastAction } from '@/components/ui/toast';
 
 export default function FoodListingCard({ listing }: { listing: FoodListing }) {
   const [status, setStatus] = useState(listing.status);
