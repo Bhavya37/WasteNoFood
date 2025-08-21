@@ -22,6 +22,7 @@ function getTitleFromPathname(pathname: string): string {
   if (pathname === '/add-food') return 'Add Food Listing';
   if (pathname === '/waste-prediction') return 'Waste Prediction';
   if (pathname === '/route-optimization') return 'Route Optimization';
+  if (pathname === '/sponsorship') return 'Sponsorship';
   return 'WasteNoFood';
 }
 

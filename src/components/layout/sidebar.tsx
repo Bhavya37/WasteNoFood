@@ -17,6 +17,7 @@ import {
   Map,
   Settings,
   HelpCircle,
+  Award,
 } from 'lucide-react';
 import { Logo } from '@/components/icons/logo';
 import { cn } from '@/lib/utils';
@@ -41,6 +42,11 @@ const menuItems = [
     href: '/route-optimization',
     icon: Map,
     label: 'Optimize Route',
+  },
+  {
+    href: '/sponsorship',
+    icon: Award,
+    label: 'Sponsorship',
   },
 ];
 
