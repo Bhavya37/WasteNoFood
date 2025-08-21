@@ -38,8 +38,24 @@ const WastePredictionOutputSchema = z.object({
 
 export type WastePredictionOutput = z.infer<typeof WastePredictionOutputSchema>;
 
-export async function predictWaste(input: WastePredictionInput): Promise<WastePredictionOutput> {
-  return predictWasteFlow(input);
+export async function predictWaste(
+  input: WastePredictionInput,
+  // This callback will be invoked when the full response is available.
+  onDone: (output: WastePredictionOutput) => void
+) {
+  const {stream, response} = predictWasteFlow(input);
+
+  // We can optionally process the stream as it comes in.
+  (async () => {
+    for await (const chunk of stream) {
+      // Here, you could process chunks if needed. For this use case,
+      // we will just wait for the full response below.
+    }
+  })();
+
+  // The `response` promise resolves when the full structured object is available.
+  const result = await response;
+  onDone(result);
 }
 
 const prompt = ai.definePrompt({
@@ -65,8 +81,9 @@ const predictWasteFlow = ai.defineFlow(
     inputSchema: WastePredictionInputSchema,
     outputSchema: WastePredictionOutputSchema,
   },
-  async input => {
-    const {output} = await prompt(input);
-    return output!;
+  async (input, streamingCallback) => {
+    const {stream, response} = await prompt(input, streamingCallback);
+    // The flow must return the full response.
+    return (await response)!;
   }
 );

@@ -31,7 +31,7 @@ const formSchema = z.object({
 });
 
 export default function WastePredictionPage() {
-  const [prediction, setPrediction] = useState<WastePredictionOutput | null>(null);
+  const [prediction, setPrediction] = useState<Partial<WastePredictionOutput> | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -48,8 +48,9 @@ export default function WastePredictionPage() {
     setPrediction(null);
     setError(null);
     try {
-      const result = await predictWaste(values);
-      setPrediction(result);
+      await predictWaste(values, (chunk) => {
+        setPrediction((currentPrediction) => ({ ...currentPrediction, ...chunk }));
+      });
     } catch (e) {
       setError('Failed to get a prediction. Please try again.');
       console.error(e);
@@ -117,7 +118,7 @@ export default function WastePredictionPage() {
       
       <div className="space-y-4">
         <h3 className="font-headline text-2xl font-semibold">Prediction Result</h3>
-        {isLoading && (
+        {(isLoading && !prediction) && (
            <Card className="flex items-center justify-center p-10">
             <div className="flex flex-col items-center gap-4">
               <Loader2 className="w-8 h-8 animate-spin text-muted-foreground" />
@@ -134,14 +135,14 @@ export default function WastePredictionPage() {
             <CardContent className="space-y-4">
               <div>
                 <p className="text-sm font-medium text-muted-foreground">Predicted Waste Amount</p>
-                <p className="text-2xl font-bold">{prediction.predictedWasteAmount}</p>
+                <p className="text-2xl font-bold">{prediction.predictedWasteAmount || '...'}</p>
               </div>
               <div>
                 <p className="text-sm font-medium text-muted-foreground">Confidence Level</p>
-                <p className="text-lg font-semibold">{prediction.confidenceLevel}</p>
+                <p className="text-lg font-semibold">{prediction.confidenceLevel || '...'}</p>
               </div>
             </CardContent>
-            <CardFooter>
+            {prediction.suggestedActions && <CardFooter>
              <Alert>
                 <Lightbulb className="h-4 w-4" />
                 <AlertTitle>Suggested Actions</AlertTitle>
@@ -149,7 +150,7 @@ export default function WastePredictionPage() {
                  {prediction.suggestedActions}
                 </AlertDescription>
               </Alert>
-            </CardFooter>
+            </CardFooter>}
           </Card>
         )}
       </div>
