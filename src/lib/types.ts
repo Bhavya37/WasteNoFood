@@ -14,4 +14,12 @@ export type FoodListing = {
     longitude: number;
   };
   status: 'Available' | 'Claimed';
+  isHero?: boolean;
 };
+
+export type CommunityHero = {
+    id: string;
+    name: string;
+    logoUrl: string;
+    tagline: string;
+}

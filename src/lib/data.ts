@@ -1,4 +1,4 @@
-import type { FoodListing } from '@/lib/types';
+import type { FoodListing, CommunityHero } from '@/lib/types';
 
 export const foodListings: FoodListing[] = [
   {
@@ -15,6 +15,7 @@ export const foodListings: FoodListing[] = [
       longitude: -118.2437,
     },
     status: 'Available',
+    isHero: true,
   },
   {
     id: '2',
@@ -30,6 +31,7 @@ export const foodListings: FoodListing[] = [
       longitude: -118.2537,
     },
     status: 'Available',
+    isHero: false,
   },
   {
     id: '3',
@@ -45,6 +47,7 @@ export const foodListings: FoodListing[] = [
       longitude: -118.2637,
     },
     status: 'Claimed',
+    isHero: false,
   },
   {
     id: '4',
@@ -60,5 +63,27 @@ export const foodListings: FoodListing[] = [
       longitude: -118.2737,
     },
     status: 'Available',
+    isHero: true,
   },
+];
+
+export const communityHeroes: CommunityHero[] = [
+  {
+    id: '1',
+    name: 'The Grand Eatery',
+    logoUrl: 'https://placehold.co/100x100.png',
+    tagline: 'Reducing waste, one meal at a time.'
+  },
+  {
+    id: '2',
+    name: 'QuickBites Cafe',
+    logoUrl: 'https://placehold.co/100x100.png',
+    tagline: 'Nourishing our community.'
+  },
+  {
+    id: '3',
+    name: 'Green Grocer Inc.',
+    logoUrl: 'https://placehold.co/100x100.png',
+    tagline: 'Fresh food for everyone.'
+  }
 ];

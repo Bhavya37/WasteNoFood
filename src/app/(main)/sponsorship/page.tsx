@@ -1,6 +1,9 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Award, Check, Mail } from 'lucide-react';
+import { Award, Check, Mail, Star } from 'lucide-react';
+import CommunityHeroCard from '@/components/community-hero-card';
+import { communityHeroes } from '@/lib/data';
+import { Separator } from '@/components/ui/separator';
 
 const premiumFeatures = [
   'Priority placement for your food listings.',
@@ -39,6 +42,23 @@ export default function SponsorshipPage() {
             </Button>
         </CardContent>
       </Card>
+
+      <Separator />
+
+      <div className="text-center">
+         <h2 className="text-2xl font-headline font-semibold tracking-tight flex items-center justify-center gap-2">
+          <Star className="w-6 h-6 text-primary" />
+          Meet Our Current Heroes
+        </h2>
+        <p className="text-muted-foreground mt-2">
+          These partners are leading the charge against food waste in our community.
+        </p>
+      </div>
+       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        {communityHeroes.map((hero) => (
+          <CommunityHeroCard key={hero.id} hero={hero} />
+        ))}
+      </div>
     </div>
   );
 }
