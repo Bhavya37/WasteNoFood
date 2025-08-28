@@ -3,23 +3,24 @@ import MapPlaceholder from '@/components/map-placeholder';
 import { foodListings, communityHeroes } from '@/lib/data';
 import { Separator } from '@/components/ui/separator';
 import CommunityHeroCard from '@/components/community-hero-card';
-import { Award } from 'lucide-react';
+import { Award, Utensils } from 'lucide-react';
 
 export default function DashboardPage() {
   return (
     <div className="space-y-8">
-      <div>
-        <h2 className="text-2xl font-headline font-semibold tracking-tight">
+      <div className="p-6 bg-card rounded-lg shadow-sm">
+        <h2 className="text-3xl font-headline font-bold tracking-tight bg-gradient-to-r from-primary to-accent text-transparent bg-clip-text">
           Live Food Map
         </h2>
-        <p className="text-muted-foreground">
+        <p className="text-muted-foreground mt-2">
           Available food donations in your area. Click on a pin for details.
         </p>
       </div>
       <MapPlaceholder listings={foodListings} />
       <Separator />
       <div>
-        <h2 className="text-2xl font-headline font-semibold tracking-tight">
+        <h2 className="text-2xl font-headline font-semibold tracking-tight flex items-center gap-2">
+          <Utensils className="w-6 h-6 text-primary" />
           Nearby Food Listings
         </h2>
         <p className="text-muted-foreground">

@@ -33,7 +33,7 @@ export default function FoodListingCard({ listing }: { listing: FoodListing }) {
   const isAvailable = status === 'Available';
 
   return (
-    <Card className={cn("flex flex-col transition-all duration-300", !isAvailable && "opacity-60 bg-secondary")}>
+    <Card className={cn("flex flex-col transition-all duration-300", !isAvailable && "bg-card/60 border-dashed")}>
       <CardHeader>
         <div className="flex items-start justify-between">
           <CardTitle className="font-headline text-xl flex-1">
@@ -77,7 +77,7 @@ export default function FoodListingCard({ listing }: { listing: FoodListing }) {
       </CardContent>
       <CardFooter>
         <Button
-          className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+          className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
           onClick={handleClaim}
           disabled={!isAvailable}
         >

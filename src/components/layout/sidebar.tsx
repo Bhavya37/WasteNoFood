@@ -8,6 +8,7 @@ import {
   SidebarFooter,
   sidebarMenuButtonVariants,
 } from '@/components/ui/sidebar';
+import { SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import {
@@ -96,3 +97,5 @@ export default function AppSidebar() {
     </Sidebar>
   );
 }
+
+    
