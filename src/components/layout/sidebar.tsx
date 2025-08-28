@@ -1,5 +1,6 @@
 'use client';
 
+import * as React from 'react';
 import {
   Sidebar,
   SidebarHeader,
@@ -54,6 +55,23 @@ const menuItems = [
 export default function AppSidebar() {
   const pathname = usePathname();
 
+  const memoizedMenuItems = React.useMemo(
+    () =>
+      menuItems.map((item) => (
+        <SidebarMenuItem key={item.href}>
+          <Link
+            href={item.href}
+            className={cn(sidebarMenuButtonVariants())}
+            data-active={pathname === item.href}
+          >
+            <item.icon />
+            <span>{item.label}</span>
+          </Link>
+        </SidebarMenuItem>
+      )),
+    [pathname]
+  );
+
   return (
     <Sidebar>
       <SidebarHeader>
@@ -64,20 +82,7 @@ export default function AppSidebar() {
           </span>
         </div>
       </SidebarHeader>
-      <SidebarMenu className="flex-1">
-        {menuItems.map((item) => (
-          <SidebarMenuItem key={item.href}>
-            <Link
-              href={item.href}
-              className={cn(sidebarMenuButtonVariants())}
-              data-active={pathname === item.href}
-            >
-              <item.icon />
-              <span>{item.label}</span>
-            </Link>
-          </SidebarMenuItem>
-        ))}
-      </SidebarMenu>
+      <SidebarMenu className="flex-1">{memoizedMenuItems}</SidebarMenu>
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -97,5 +102,3 @@ export default function AppSidebar() {
     </Sidebar>
   );
 }
-
-    
