@@ -9,7 +9,6 @@ import {
   SidebarFooter,
   sidebarMenuButtonVariants,
 } from '@/components/ui/sidebar';
-import { SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import {
@@ -55,23 +54,6 @@ const menuItems = [
 export default function AppSidebar() {
   const pathname = usePathname();
 
-  const memoizedMenuItems = React.useMemo(
-    () =>
-      menuItems.map((item) => (
-        <SidebarMenuItem key={item.href}>
-          <Link
-            href={item.href}
-            className={cn(sidebarMenuButtonVariants())}
-            data-active={pathname === item.href}
-          >
-            <item.icon />
-            <span>{item.label}</span>
-          </Link>
-        </SidebarMenuItem>
-      )),
-    [pathname]
-  );
-
   return (
     <Sidebar>
       <SidebarHeader>
@@ -82,7 +64,20 @@ export default function AppSidebar() {
           </span>
         </div>
       </SidebarHeader>
-      <SidebarMenu className="flex-1">{memoizedMenuItems}</SidebarMenu>
+      <SidebarMenu className="flex-1">
+        {menuItems.map((item) => (
+            <SidebarMenuItem key={item.href}>
+            <Link
+                href={item.href}
+                className={cn(sidebarMenuButtonVariants())}
+                data-active={pathname === item.href}
+            >
+                <item.icon />
+                <span>{item.label}</span>
+            </Link>
+            </SidebarMenuItem>
+        ))}
+      </SidebarMenu>
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
