@@ -19,6 +19,7 @@ export default function CommunityHeroCard({ hero }: { hero: CommunityHero }) {
             alt={`${hero.name} logo`}
             data-ai-hint="logo"
             fill
+            sizes="96px"
             className="rounded-full object-cover border-4 border-primary/20"
           />
         </div>

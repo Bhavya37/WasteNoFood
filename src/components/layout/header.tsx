@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import {
   Avatar,
   AvatarFallback,
@@ -39,7 +40,9 @@ export default function Header() {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Avatar className="cursor-pointer">
-            <AvatarImage src="https://placehold.co/40x40.png" alt="@volunteer" data-ai-hint="person smiling" />
+            <AvatarImage asChild>
+                <Image src="https://picsum.photos/40/40" alt="@volunteer" data-ai-hint="person smiling" width={40} height={40} />
+            </AvatarImage>
             <AvatarFallback>
               <CircleUser />
             </AvatarFallback>

@@ -7,12 +7,12 @@ export default function MapPlaceholder({ listings }: { listings: FoodListing[] }
   return (
     <Card className="relative w-full aspect-video overflow-hidden rounded-lg shadow-lg">
       <Image
-        src="https://placehold.co/1200x600.png"
+        src="https://picsum.photos/1200/600"
         alt="Map of food locations"
         data-ai-hint="city map"
-        layout="fill"
-        objectFit="cover"
-        className="opacity-50"
+        fill
+        priority
+        className="object-cover opacity-50"
       />
       <div className="absolute inset-0 flex items-center justify-center bg-black/20">
         <h2 className="text-2xl font-bold text-white drop-shadow-lg">

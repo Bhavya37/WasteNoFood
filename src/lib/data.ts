@@ -71,19 +71,19 @@ export const communityHeroes: CommunityHero[] = [
   {
     id: '1',
     name: 'The Grand Eatery',
-    logoUrl: 'https://placehold.co/100x100.png',
+    logoUrl: 'https://picsum.photos/100/100',
     tagline: 'Reducing waste, one meal at a time.'
   },
   {
     id: '2',
     name: 'QuickBites Cafe',
-    logoUrl: 'https://placehold.co/100x100.png',
+    logoUrl: 'https://picsum.photos/100/100',
     tagline: 'Nourishing our community.'
   },
   {
     id: '3',
     name: 'Green Grocer Inc.',
-    logoUrl: 'https://placehold.co/100x100.png',
+    logoUrl: 'https://picsum.photos/100/100',
     tagline: 'Fresh food for everyone.'
   }
 ];
